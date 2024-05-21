@@ -1,0 +1,16 @@
+{
+  "name": "nagp-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.2",
+    "morgan": "~1.9.1"
+  }
+}
