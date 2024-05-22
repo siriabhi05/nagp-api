@@ -3,6 +3,7 @@ import { createServer } from "http";
 import nagpRouter from "./routes/nagp.js";
 
 var app = express();
+app.use(express.json())
 app.use("/nagp", nagpRouter);
 app.use(sta("public"));
 

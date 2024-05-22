@@ -1,16 +1,13 @@
 import { MongoClient } from "mongodb";
 
-
+const uri = `mongodb://${process.env.DB_SERVICE}.${process.env.DB_HEADLESS_SERVICE}`;
 
 export async function getData() {
   var client = undefined
   try {
-    const uri = `mongodb://${process.env.DB_SERVICE}.${process.env.DB_HEADLESS_SERVICE}`;
-    console.log("mongodburi: " + uri);
     client = new MongoClient(uri);
-    console.log("mongodb client created");
-    const database = client.db("db");
-    const performances = await database.collection("nagp").find({}).toArray();
+    const database = client.db("nagp");
+    const performances = await database.collection("performances").find().toArray();
     console.log(performances);
     return { performances: performances, status: 200 };
   } catch (e) {
@@ -20,3 +17,20 @@ export async function getData() {
     if (client) await client.close();
   }
 }
+
+export async function createData(data) {
+  var client = undefined
+  try {
+    console.log(data);
+    client = new MongoClient(uri);
+    const database = client.db("nagp");
+    const result = await database.collection("performances").insertOne(data);
+    console.log(result)
+  } catch (e) {
+    console.log(e);
+  } finally {
+    if (client) await client.close();
+  }
+}
+
+
