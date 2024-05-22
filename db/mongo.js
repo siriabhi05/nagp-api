@@ -3,10 +3,11 @@ import { MongoClient } from "mongodb";
 
 
 export async function getData() {
+  var client = undefined
   try {
     const uri = `mongodb://${process.env.DB_SERVICE}.${process.env.DB_HEADLESS_SERVICE}`;
     console.log("mongodburi: " + uri);
-    const client = new MongoClient(uri);
+    client = new MongoClient(uri);
     console.log("mongodb client created");
     const database = client.db("db");
     const performances = await database.collection("nagp").find({}).toArray();
