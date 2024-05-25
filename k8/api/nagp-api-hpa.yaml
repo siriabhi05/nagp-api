@@ -1,5 +1,5 @@
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscalar
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
 metadata:
   name: nagp-api-hpa
 spec:
@@ -9,4 +9,15 @@ spec:
     name: nagp-api-deployment
   minReplicas: 3
   maxReplicas: 6
-  targetCPUUtilizationPercentage: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 10
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 5
+
+
