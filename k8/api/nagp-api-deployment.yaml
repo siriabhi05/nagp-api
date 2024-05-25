@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nagp-api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: nagp-api-service
+  template: 
+    metadata: 
+      name: nagp-api-service
+      labels: 
+        app: nagp-api-service
+    spec: 
+      containers:
+      - name: nagp-api-service
+        image: siriabhi/nagp-api-image:3
+        ports: 
+        - containerPort: 3010
+        envFrom:
+        - secretRef: 
+            name: nagp-api-secret

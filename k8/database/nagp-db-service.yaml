@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nagp-db-service
+  labels: 
+    app: nagpdb
+spec:
+  clusterIP: None
+  selector:
+    app: nagpdb
+  ports:
+    - port: 27017
+      targetPort: 27017
+

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nagp-db-statefulset
+spec:
+  serviceName:  nagp-db-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nagpdb
+  template:
+    metadata:
+      labels:
+        app: nagpdb
+    spec:
+      containers:
+      - name: nagpdb
+        image: mongo:4.0.17
+        envFrom:
+        - secretRef: 
+            name: nagp-db-secret
+        ports:
+          - containerPort: 27017
+        volumeMounts:
+          - name: nagpdb-pvc
+            mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: nagpdb-pvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

@@ -9,8 +9,8 @@ router.get("/", async function (request, response) {
 });
 
 router.post("/", async function (request, response) {
-  await createData(request.body.data);
-  response.status(200).json("Ok")
+  const dataResponse = await createData(request.body.data);
+  response.status(dataResponse.staus).json(dataResponse.msg)
 })
 
 export default router;
