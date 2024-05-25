@@ -18,6 +18,11 @@ spec:
         image: siriabhi/nagp-api-image:6
         ports: 
         - containerPort: 3010
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
         envFrom:
         - secretRef: 
             name: nagp-api-secret
