@@ -15,9 +15,12 @@ spec:
     spec: 
       containers:
       - name: nagp-api-service
-        image: siriabhi/nagp-api-image:3
+        image: siriabhi/nagp-api-image:4
         ports: 
         - containerPort: 3010
         envFrom:
         - secretRef: 
             name: nagp-api-secret
+        - configMapRef:
+            name: nagp-api-config
+           

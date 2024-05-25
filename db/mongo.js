@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}${process.env.DB_SERVICE}.${process.env.DB_HEADLESS_SERVICE}`;
+const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_SERVICE}.${process.env.DB_HEADLESS_SERVICE}`;
 
 export async function getData() {
   var client = undefined
