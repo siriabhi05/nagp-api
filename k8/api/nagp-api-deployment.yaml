@@ -15,7 +15,7 @@ spec:
     spec: 
       containers:
       - name: nagp-api-service
-        image: siriabhi/nagp-api-image:4
+        image: siriabhi/nagp-api-image:5
         ports: 
         - containerPort: 3010
         envFrom:
